@@ -2,8 +2,13 @@ import logo from "../assets/logo.png";
 import lupa from "../assets/icon-lupa.png";
 import carrinho from "../assets/icon-carrinho.png";
 import { NavLink } from "react-router";
+import { useContext } from "react";
+import { LoginContest } from "../contexts/LoginContext";
 
 const Header = () => {
+
+    const {logado} = useContext(LoginContest)
+
     return (
         <header>
             <div className="topo">
@@ -28,7 +33,11 @@ const Header = () => {
                 <NavLink to="/">Home</NavLink>
                 <NavLink to="/produtos">Produtos</NavLink>
                 <NavLink to="/categorias">Categorias</NavLink>
-                <NavLink to="/meus-pedidos">Meus Pedidos</NavLink>
+                {
+                    logado && (
+                        <NavLink to="/meus-pedidos">Meus Pedidos</NavLink>
+                    )
+                }
             </nav>
         </header>
     );
